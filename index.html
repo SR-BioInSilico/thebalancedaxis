@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Balanced Axis | PCOS & Metabolic Health</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --plum:   #6b3a5e;
+      --rose:   #c2748a;
+      --blush:  #f2e4e8;
+      --cream:  #faf7f5;
+      --ink:    #1f1a1d;
+      --muted:  #6b6068;
+      --border: #e4d8dc;
+      --white:  #ffffff;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--cream);
+      color: var(--ink);
+      line-height: 1.6;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(250,247,245,0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0.9rem 2rem;
+    }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem; font-weight: 600;
+      color: var(--plum); text-decoration: none;
+      letter-spacing: 0.02em;
+    }
+    .nav-links { display: flex; gap: 1.8rem; list-style: none; }
+    .nav-links a {
+      font-size: 0.85rem; font-weight: 500; letter-spacing: 0.06em;
+      text-transform: uppercase; color: var(--muted);
+      text-decoration: none; transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--plum); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 88vh;
+      display: grid; grid-template-columns: 1fr 1fr; align-items: center;
+      gap: 3rem; padding: 5rem 2rem 4rem;
+      max-width: 1100px; margin: 0 auto;
+    }
+    .hero-eyebrow {
+      font-size: 0.78rem; font-weight: 600; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--rose);
+      margin-bottom: 1rem;
+    }
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.6rem, 5vw, 4rem);
+      font-weight: 600; line-height: 1.1;
+      color: var(--ink); margin-bottom: 1.5rem;
+    }
+    .hero h1 em { color: var(--plum); font-style: italic; }
+    .hero-desc {
+      font-size: 1.05rem; color: var(--muted);
+      max-width: 480px; margin-bottom: 2rem; line-height: 1.75;
+    }
+    .hero-cta-row { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--plum); color: var(--white);
+      padding: 0.75rem 1.6rem; border-radius: 4px;
+      font-size: 0.9rem; font-weight: 600;
+      text-decoration: none; border: none; cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+      display: inline-block;
+    }
+    .btn-primary:hover { background: #552f4b; transform: translateY(-1px); }
+    .btn-ghost {
+      background: transparent; color: var(--plum);
+      padding: 0.75rem 1.6rem; border-radius: 4px;
+      font-size: 0.9rem; font-weight: 600;
+      text-decoration: none; border: 1.5px solid var(--plum);
+      cursor: pointer; transition: background 0.2s;
+      display: inline-block;
+    }
+    .btn-ghost:hover { background: var(--blush); }
+
+    /* hero visual */
+    .hero-visual {
+      background: linear-gradient(145deg, var(--blush), #e8cdd6);
+      border-radius: 24px; min-height: 420px;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 1.2rem; padding: 2.5rem;
+      position: relative; overflow: hidden;
+    }
+    .hero-visual::before {
+      content: '';
+      position: absolute; top: -60px; right: -60px;
+      width: 200px; height: 200px;
+      background: radial-gradient(circle, rgba(107,58,94,0.15) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .stat-row { display: flex; gap: 1.5rem; width: 100%; }
+    .stat-card {
+      background: white; border-radius: 12px;
+      padding: 1.2rem 1.5rem; text-align: center;
+      box-shadow: 0 4px 20px rgba(107,58,94,0.1);
+      flex: 1;
+    }
+    .stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.2rem; font-weight: 600; color: var(--plum);
+      display: block;
+    }
+    .stat-label { font-size: 0.72rem; color: var(--muted); font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; }
+    .pill-tag {
+      background: white; border-radius: 20px;
+      padding: 0.5rem 1rem; font-size: 0.82rem;
+      color: var(--plum); font-weight: 600;
+      box-shadow: 0 2px 12px rgba(107,58,94,0.1);
+    }
+    .pill-row { display: flex; gap: 0.7rem; flex-wrap: wrap; justify-content: center; }
+
+    /* ── SECTION WRAPPER ── */
+    section { padding: 5rem 2rem; }
+    .section-inner { max-width: 1000px; margin: 0 auto; }
+    .section-label {
+      font-size: 0.75rem; font-weight: 600; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--rose);
+      margin-bottom: 0.6rem;
+    }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+      font-weight: 600; color: var(--ink);
+      margin-bottom: 1rem; line-height: 1.2;
+    }
+    .section-sub { color: var(--muted); max-width: 620px; line-height: 1.75; margin-bottom: 2.5rem; }
+
+    /* ── PCOS SUBTYPES ── */
+    .subtypes-bg { background: var(--white); }
+
+    .phenotype-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 1.2rem;
+      margin-bottom: 2.5rem;
+    }
+    .phenotype-card {
+      border-radius: 14px;
+      padding: 1.6rem 1.4rem;
+      border: 1.5px solid var(--border);
+      transition: box-shadow 0.2s, border-color 0.2s;
+      position: relative;
+    }
+    .phenotype-card:hover { box-shadow: 0 6px 24px rgba(107,58,94,0.1); border-color: var(--rose); }
+    .phenotype-card.severity-1 { border-top: 4px solid #6b3a5e; }
+    .phenotype-card.severity-2 { border-top: 4px solid #8f4f7e; }
+    .phenotype-card.severity-3 { border-top: 4px solid #b57099; }
+    .phenotype-card.severity-4 { border-top: 4px solid #d9a8be; }
+    .phenotype-label {
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--muted); margin-bottom: 0.4rem;
+    }
+    .phenotype-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem; font-weight: 600; color: var(--plum);
+      margin-bottom: 1rem; line-height: 1.2;
+    }
+    .trait-list { display: flex; flex-direction: column; gap: 0.45rem; margin-bottom: 1rem; }
+    .trait-item {
+      display: flex; align-items: center; gap: 0.5rem;
+      font-size: 0.82rem; color: var(--ink);
+    }
+    .trait-dot {
+      width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0;
+    }
+    .trait-dot.present { background: var(--plum); }
+    .trait-dot.absent  { background: var(--border); border: 1.5px solid var(--muted); }
+    .severity-badge {
+      display: inline-block;
+      font-size: 0.68rem; font-weight: 700; letter-spacing: 0.06em;
+      text-transform: uppercase; padding: 0.25rem 0.7rem;
+      border-radius: 20px; margin-top: 0.2rem;
+    }
+    .sev-high   { background: #f5e6f0; color: #6b3a5e; }
+    .sev-medium { background: #f9eef4; color: #8f4f7e; }
+    .sev-lower  { background: #fdf3f7; color: #b57099; }
+    .sev-mild   { background: #fef8fb; color: #c2748a; }
+
+    .criteria-box {
+      background: var(--blush);
+      border-radius: 12px;
+      padding: 1.4rem 1.6rem;
+      margin-bottom: 2.5rem;
+      border-left: 4px solid var(--plum);
+    }
+    .criteria-box p {
+      font-size: 0.88rem; color: var(--ink); line-height: 1.7; margin-bottom: 0.5rem;
+    }
+    .criteria-box p:last-child { margin-bottom: 0; }
+    .criteria-box strong { color: var(--plum); }
+
+    .citation-row {
+      display: flex; align-items: center; gap: 0.6rem;
+      font-size: 0.78rem; color: var(--muted);
+    }
+    .citation-row a { color: var(--rose); text-decoration: none; font-weight: 500; }
+    .citation-row a:hover { text-decoration: underline; }
+
+    /* ── AWARENESS (existing cards) ── */
+    .awareness-bg { background: var(--blush); }
+    .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+    .info-card {
+      border: 1px solid var(--border); border-radius: 12px;
+      padding: 1.8rem; background: white;
+      transition: box-shadow 0.2s, border-color 0.2s;
+    }
+    .info-card:hover { box-shadow: 0 6px 24px rgba(107,58,94,0.1); border-color: var(--rose); }
+    .card-icon { font-size: 1.6rem; margin-bottom: 0.8rem; display: block; }
+    .card-title { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 600; margin-bottom: 0.6rem; color: var(--plum); }
+    .card-text { font-size: 0.92rem; color: var(--muted); line-height: 1.7; }
+
+    /* ── BOOK ── */
+    .book-bg { background: linear-gradient(135deg, var(--plum) 0%, #3d1f35 100%); }
+    .book-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+    .book-bg .section-label { color: var(--rose); }
+    .book-bg .section-title { color: white; }
+    .book-bg .section-sub { color: rgba(255,255,255,0.7); }
+    .book-cover {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 16px; padding: 3rem 2rem;
+      text-align: center; backdrop-filter: blur(4px);
+    }
+    .book-cover-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.7rem; font-weight: 600;
+      color: white; line-height: 1.3; margin-bottom: 0.6rem;
+    }
+    .book-cover-sub { font-size: 0.85rem; color: rgba(255,255,255,0.6); margin-bottom: 2rem; }
+    .book-cover-badge {
+      display: inline-block; background: var(--rose);
+      color: white; padding: 0.4rem 1rem;
+      border-radius: 20px; font-size: 0.75rem; font-weight: 600;
+      letter-spacing: 0.08em; text-transform: uppercase;
+    }
+    .waitlist-form { display: flex; flex-direction: column; gap: 0.9rem; }
+    .waitlist-form input[type="email"] {
+      padding: 0.75rem 1rem; border-radius: 6px;
+      border: 1.5px solid rgba(255,255,255,0.2);
+      background: rgba(255,255,255,0.1);
+      color: white; font-family: 'Inter', sans-serif;
+      font-size: 0.92rem; outline: none;
+      transition: border-color 0.2s;
+    }
+    .waitlist-form input[type="email"]::placeholder { color: rgba(255,255,255,0.45); }
+    .waitlist-form input[type="email"]:focus { border-color: var(--rose); }
+    .waitlist-form .btn-primary { background: var(--rose); width: fit-content; }
+    .waitlist-form .btn-primary:hover { background: #b05c72; }
+    .privacy-note { font-size: 0.75rem; color: rgba(255,255,255,0.4); }
+    .success-msg { display: none; color: #a8e6c4; font-size: 0.9rem; font-weight: 500; }
+
+    /* ── ABOUT ── */
+    .about-bg { background: var(--cream); }
+    .about-layout { display: grid; grid-template-columns: 1fr 2fr; gap: 3rem; align-items: start; }
+    .about-avatar {
+      width: 100%; aspect-ratio: 1;
+      border-radius: 16px;
+      background: linear-gradient(145deg, var(--blush), #d9b8c7);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 4rem; max-width: 220px;
+    }
+    .about-text h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem; font-weight: 600; color: var(--ink);
+      margin-bottom: 0.2rem;
+    }
+    .about-role { color: var(--rose); font-size: 0.9rem; font-weight: 600; margin-bottom: 1.2rem; }
+    .about-text p { color: var(--muted); line-height: 1.8; font-size: 0.95rem; margin-bottom: 1rem; }
+    .about-links { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1.2rem; }
+    .link-pill {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      background: white; border: 1px solid var(--border);
+      border-radius: 20px; padding: 0.45rem 1rem;
+      font-size: 0.8rem; font-weight: 600; color: var(--plum);
+      text-decoration: none; transition: background 0.2s, border-color 0.2s;
+    }
+    .link-pill:hover { background: var(--blush); border-color: var(--rose); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--ink); color: rgba(255,255,255,0.5);
+      text-align: center; padding: 2rem;
+      font-size: 0.82rem;
+    }
+    footer a { color: var(--rose); text-decoration: none; }
+    footer strong { color: rgba(255,255,255,0.8); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 700px) {
+      nav { padding: 0.9rem 1.2rem; }
+      .nav-links { gap: 1rem; }
+      .hero { grid-template-columns: 1fr; padding: 3rem 1.2rem 2rem; min-height: auto; gap: 2rem; }
+      .hero-visual { min-height: 280px; }
+      .book-layout, .about-layout { grid-template-columns: 1fr; }
+      section { padding: 3.5rem 1.2rem; }
+      .stat-row { gap: 0.8rem; }
+      .phenotype-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 480px) {
+      .phenotype-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">The Balanced Axis</a>
+  <ul class="nav-links">
+    <li><a href="#subtypes">Learn</a></li>
+    <li><a href="#book">Book</a></li>
+    <li><a href="#about">About</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-text">
+    <p class="hero-eyebrow">PCOS · Metabolic Health · Reproductive Awareness</p>
+    <h1>Your hormones<br>aren't broken.<br><em>They need a map.</em></h1>
+    <p class="hero-desc">Science-backed insights on PCOS, glucose, and hormonal health — translated from computational biology research into everyday language.</p>
+    <div class="hero-cta-row">
+      <a href="#subtypes" class="btn-primary">Start learning →</a>
+      <a href="#book" class="btn-ghost">Get the book</a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="stat-row">
+      <div class="stat-card">
+        <span class="stat-num">1 in 8</span>
+        <span class="stat-label">Women with PCOS</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-num">70%</span>
+        <span class="stat-label">Undiagnosed</span>
+      </div>
+    </div>
+    <div class="pill-row">
+      <span class="pill-tag">Insulin Resistance</span>
+      <span class="pill-tag">Hormonal Imbalance</span>
+      <span class="pill-tag">Inflammation</span>
+      <span class="pill-tag">Metabolic Syndrome</span>
+    </div>
+    <div class="stat-card" style="width:100%; text-align:left;">
+      <span style="font-size:0.75rem; color:var(--muted); text-transform:uppercase; letter-spacing:0.08em; font-weight:600;">Did you know?</span>
+      <p style="font-size:0.9rem; color:var(--ink); margin-top:0.4rem; line-height:1.55;">PCOS manifests differently across ethnicities — metabolic dysfunction is more prominent in East Asian women, while inflammatory pathways dominate in European populations.</p>
+    </div>
+  </div>
+</div>
+
+<!-- PCOS SUBTYPES -->
+<section id="subtypes" class="subtypes-bg">
+  <div class="section-inner">
+    <p class="section-label">Know your phenotype</p>
+    <h2 class="section-title">PCOS is not one condition. It's four.</h2>
+    <p class="section-sub">The Rotterdam criteria (2003) define PCOS by three features: hyperandrogenism, chronic anovulation, and polycystic ovarian morphology. You need any 2 of 3 — which creates four distinct phenotypes with very different metabolic risks.</p>
+
+    <div class="criteria-box">
+      <p><strong>Rotterdam Diagnostic Criteria</strong> — diagnosis requires ≥ 2 of the following 3 features, after excluding other causes:</p>
+      <p>① <strong>Hyperandrogenism (HA)</strong> — elevated androgens (testosterone, DHEAS) or clinical signs (hirsutism, acne, alopecia) &nbsp;·&nbsp; ② <strong>Ovulatory dysfunction (OD)</strong> — irregular or absent periods, chronic anovulation &nbsp;·&nbsp; ③ <strong>Polycystic ovarian morphology (PCOM)</strong> — ≥ 12 follicles per ovary or ovarian volume > 10 mL on ultrasound</p>
+    </div>
+
+    <div class="phenotype-grid">
+
+      <div class="phenotype-card severity-1">
+        <p class="phenotype-label">Phenotype A · Classic</p>
+        <p class="phenotype-name">Full Classic PCOS</p>
+        <div class="trait-list">
+          <div class="trait-item"><span class="trait-dot present"></span> Hyperandrogenism</div>
+          <div class="trait-item"><span class="trait-dot present"></span> Ovulatory Dysfunction</div>
+          <div class="trait-item"><span class="trait-dot present"></span> Polycystic Ovaries</div>
+        </div>
+        <span class="severity-badge sev-high">Highest metabolic risk</span>
+        <p style="font-size:0.8rem; color:var(--muted); margin-top:0.8rem; line-height:1.6;">All three features present. Strongest association with insulin resistance, dyslipidaemia, and cardiovascular risk.</p>
+      </div>
+
+      <div class="phenotype-card severity-2">
+        <p class="phenotype-label">Phenotype B · Classic</p>
+        <p class="phenotype-name">Classic without PCO</p>
+        <div class="trait-list">
+          <div class="trait-item"><span class="trait-dot present"></span> Hyperandrogenism</div>
+          <div class="trait-item"><span class="trait-dot present"></span> Ovulatory Dysfunction</div>
+          <div class="trait-item"><span class="trait-dot absent"></span> Polycystic Ovaries</div>
+        </div>
+        <span class="severity-badge sev-medium">High metabolic risk</span>
+        <p style="font-size:0.8rem; color:var(--muted); margin-top:0.8rem; line-height:1.6;">Similar hormonal profile to Phenotype A. Metabolic risk nearly as high — ovarian morphology alone doesn't define severity.</p>
+      </div>
+
+      <div class="phenotype-card severity-3">
+        <p class="phenotype-label">Phenotype C · Ovulatory</p>
+        <p class="phenotype-name">Ovulatory PCOS</p>
+        <div class="trait-list">
+          <div class="trait-item"><span class="trait-dot present"></span> Hyperandrogenism</div>
+          <div class="trait-item"><span class="trait-dot absent"></span> Ovulatory Dysfunction</div>
+          <div class="trait-item"><span class="trait-dot present"></span> Polycystic Ovaries</div>
+        </div>
+        <span class="severity-badge sev-lower">Moderate metabolic risk</span>
+        <p style="font-size:0.8rem; color:var(--muted); margin-top:0.8rem; line-height:1.6;">Regular cycles but elevated androgens and PCO morphology. Often under-recognised — women may not suspect PCOS at all.</p>
+      </div>
+
+      <div class="phenotype-card severity-4">
+        <p class="phenotype-label">Phenotype D · Non-androgenic</p>
+        <p class="phenotype-name">Mild PCOS</p>
+        <div class="trait-list">
+          <div class="trait-item"><span class="trait-dot absent"></span> Hyperandrogenism</div>
+          <div class="trait-item"><span class="trait-dot present"></span> Ovulatory Dysfunction</div>
+          <div class="trait-item"><span class="trait-dot present"></span> Polycystic Ovaries</div>
+        </div>
+        <span class="severity-badge sev-mild">Lower metabolic risk</span>
+        <p style="font-size:0.8rem; color:var(--muted); margin-top:0.8rem; line-height:1.6;">No androgen excess. Mildest metabolic profile. Some researchers debate whether this constitutes true PCOS.</p>
+      </div>
+
+    </div>
+
+    <div class="citation-row">
+      <span>📄</span>
+      <span>Source: Azziz, Ricardo et al. (2016). <em>Polycystic ovary syndrome.</em> Nature Reviews Disease Primers.</span>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- BOOK -->
+<section id="book" class="book-bg">
+  <div class="section-inner">
+    <div class="book-layout">
+      <div>
+        <p class="section-label">Upcoming release</p>
+        <h2 class="section-title">Decoding the Female Engine</h2>
+        <p class="section-sub">Metabolic networks, PCOS genomics, and practical daily hacks — translated from a PhD thesis into a book you can actually use.</p>
+        <div class="waitlist-form">
+          <input type="email" id="waitlistEmail" placeholder="your@email.com">
+          <button class="btn-primary" onclick="joinWaitlist()">Get a free chapter preview →</button>
+          <p class="privacy-note">No spam. Unsubscribe any time.</p>
+          <p class="success-msg" id="successMsg">✓ You're on the list! We'll be in touch.</p>
+        </div>
+      </div>
+      <div class="book-cover">
+        <div style="font-size:3rem; margin-bottom:1rem;">📖</div>
+        <div class="book-cover-title">Decoding the<br>Female Engine</div>
+        <div class="book-cover-sub">by Sindhuja Rajavelu<br>PhD Candidate, Biotechnology</div>
+        <span class="book-cover-badge">Coming Soon</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="about-bg">
+  <div class="section-inner">
+    <p class="section-label">Who is behind this</p>
+    <h2 class="section-title">About Sindhuja</h2>
+    <div class="about-layout">
+      <div class="about-avatar">🧬</div>
+      <div class="about-text">
+        <h3>Sindhuja Rajavelu</h3>
+        <p class="about-role">PhD Candidate, Biotechnology · NIT Durgapur · Computational &amp; Translational Biology</p>
+        <p>I study PCOS from the inside out — using GWAS data, regulatory genomics, and protein interaction networks to understand why this condition looks so different across populations and what we can actually do about it.</p>
+        <p>This platform is my attempt to bridge the gap between what the science knows and what patients hear. The goal: give women the metabolic and hormonal literacy they deserve, backed by real research.</p>
+        <div class="about-links">
+          <a href="https://github.com/SR-BioInSilico" target="_blank" class="link-pill">⚙️ GitHub</a>
+          <a href="https://www.researchsquare.com/article/rs-8610143/v1" target="_blank" class="link-pill">📄 Preprint</a>
+          <a href="https://www.linkedin.com/in/sindhuja-rajavelu-b4b969102" target="_blank" class="link-pill">🔗 LinkedIn</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p><strong>The Balanced Axis</strong> · Created by <a href="https://github.com/SR-BioInSilico">Sindhuja Rajavelu</a> · PCOS &amp; Metabolic Health Awareness</p>
+  <p style="margin-top:0.5rem;">Not medical advice. Always consult your healthcare provider.</p>
+</footer>
+
+<script>
+  function joinWaitlist() {
+    const email = document.getElementById('waitlistEmail').value.trim();
+    if (!email || !email.includes('@')) return alert('Please enter a valid email.');
+    let list = JSON.parse(localStorage.getItem('waitlistEmails')) || [];
+    if (!list.includes(email)) { list.push(email); localStorage.setItem('waitlistEmails', JSON.stringify(list)); }
+    document.getElementById('successMsg').style.display = 'block';
+    document.getElementById('waitlistEmail').value = '';
+    document.getElementById('waitlistEmail').disabled = true;
+  }
+</script>
+</body>
+</html>
